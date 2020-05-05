@@ -21,10 +21,14 @@
     "start": "npm run lint && node -r esm src/index.js"
   },
   "dependencies": {
+    "@pie-dao/abis": "^1.0.0",
+    "@pie-dao/blockchain": "1.1.0",
+    "@pie-dao/utils": "^1.0.0",
     "bignumber.js": "^9.0.0",
     "esm": "^3.2.25",
     "ethers": "4.0.47",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "ws": "^7.2.5"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
