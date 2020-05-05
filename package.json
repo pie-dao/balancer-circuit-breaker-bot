@@ -1,0 +1,34 @@
+{
+  "name": "balancer-circuit-breaker-bot",
+  "version": "0.0.1",
+  "description": "trigger alerts when crazy things happen",
+  "keywords": [],
+  "license": "MIT",
+  "type": "module",
+  "author": "Dan Matthews <dan@cryptobuilders.io>",
+  "homepage": "https://github.com/pie-dao/balancer-circuit-breaker-bot",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pie-dao/balancer-circuit-breaker-bot.git"
+  },
+  "bugs": {
+    "mail": "dan@cryptobuilders.io",
+    "url": "https://github.com/pie-dao/balancer-circuit-breaker-bot/issues"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "start": "npm run lint && node -r esm src/index.js"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "esm": "^3.2.25",
+    "ethers": "4.0.47",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
+}
