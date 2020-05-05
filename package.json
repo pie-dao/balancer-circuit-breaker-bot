@@ -25,6 +25,7 @@
     "@pie-dao/blockchain": "1.1.0",
     "@pie-dao/utils": "^1.0.0",
     "bignumber.js": "^9.0.0",
+    "cli-table2": "^0.2.0",
     "esm": "^3.2.25",
     "ethers": "4.0.47",
     "node-fetch": "^2.6.0",

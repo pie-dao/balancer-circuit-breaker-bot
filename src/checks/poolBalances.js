@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js';
+import Table from 'cli-table2';
 
 import discord from '../adapters/discord';
 
@@ -49,20 +50,31 @@ export default async ({
 
   balances = newBalances;
 
+  const total = balances.reduce((sum, balance) => sum.plus(balance), BigNumber(0));
+
   console.log('\n\npool balances\n--------');
-  console.table(shifts);
+  const payload = await Promise.all(tokens.map(async (token, index) => {
+    const { symbol } = await database.contract(token);
+
+    return [
+      symbol,
+      token,
+      shifts[token],
+      balances[index].toFixed(5),
+      balances[index].dividedBy(total).multipliedBy(100).toFixed(2),
+    ];
+  }));
+  const table = new Table({ style: { head: [], border: [] } });
+  table.push(['Symbol', 'Token', 'Change', 'Balance', 'Weight']);
+  payload.forEach((record) => { table.push(record); });
+  const content = table.toString();
+  console.log(content);
+
+  const poolName = await controllerContract.name();
+  const poolBalance = total.dividedBy(balances.length).toFixed(5);
 
   if (pushToDiscord) {
-    let message = `${await controllerContract.name()} pool balance change:
-\`\`\`
-┌────────────────────────────────────────────┬─────────┬─────────┐
-│               TOKEN ADDRESS                │ CHANGE  │ BALANCE │
-├────────────────────────────────────────────┼─────────┼─────────┤`;
-    tokens.forEach((token, index) => {
-      message += `\n│ ${token} │  ${shifts[token]}  │ ${newBalances[index].toFixed(5)} │`;
-    });
-    message += '\n└────────────────────────────────────────────┴─────────┴─────────┘\n```';
-    discord(message);
+    discord(`${poolName} pool balance changed - total: ${poolBalance}\n\`\`\`${content}\`\`\``);
   }
 
   running = false;
