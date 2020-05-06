@@ -5,8 +5,9 @@ import { ethers } from 'ethers';
 import { pieSmartPool } from '@pie-dao/abis';
 
 import poolBalances from './checks/poolBalances';
+import tokenSupply from './checks/tokenSupply';
 
-const checks = [poolBalances];
+const checks = [poolBalances, tokenSupply];
 
 const blocknativeDappId = '523b279d-0fe0-42e8-8977-e688c3686e57';
 const database = new BlockchainDatabase({ blocknativeDappId, ws });
