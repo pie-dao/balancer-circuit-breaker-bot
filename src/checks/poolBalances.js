@@ -40,9 +40,9 @@ export default async ({
   diffs.forEach((diff, index) => {
     const percentageShift = diff.dividedBy(balances[index]);
     if (alertThreshold.isLessThan(percentageShift)) {
-      const message = `ALERT!!! ${tokens[index].toString()} shift exceeds alert threshold`;
+      const message = `${tokens[index].toString()} shift exceeds alert threshold`;
       console.log(message);
-      discord(message);
+      discord(message, true);
     }
     if (!diff.isZero()) {
       pushToDiscord = true;
