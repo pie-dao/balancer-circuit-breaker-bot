@@ -28,7 +28,7 @@
     "cli-table2": "^0.2.0",
     "esm": "^3.2.25",
     "ethers": "4.0.47",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "ws": "^7.2.5"
   },
   "devDependencies": {
